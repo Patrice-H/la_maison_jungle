@@ -11,13 +11,15 @@ import olivierImg from '../../assets/olivier.jpg';
 import pothosArgenteImg from '../../assets/pothos-argente.jpg';
 import succulenteImg from '../../assets/succulente.jpg';
 import './PlantItem.css'
+import AdvertisingInsert from "../AdvertisingInsert/AdvertisingInsert";
 
 const PlantItem = (props) => {
     const plantName = props.name;
     const plantCover = props.cover;
-    //const plantId = props.id;
     const plantLight = props.light;
     const plantWater = props.water;
+    const plantBestSale = props.bestSale;
+    const plantSpecialOffer = props.specialOffer;
     let plantImgSrc = '';
 
     switch (plantCover) {
@@ -55,9 +57,11 @@ const PlantItem = (props) => {
     return (
         <>
             <img src={plantImgSrc} alt={ plantName } className='plant-item-img' />
-            <p>{ plantName }</p>
+            <div>{ plantName }</div>
             <CareScale careType='light' scaleValue={ plantLight } />
             <CareScale careType='water' scaleValue={ plantWater } />
+            {plantBestSale ? <AdvertisingInsert insertType='best-sale' /> : null}
+            {plantSpecialOffer ? <AdvertisingInsert insertType='special-offer' /> : null}
         </>
     );
 }

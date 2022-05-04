@@ -17,7 +17,14 @@ const ShoppingList = () => {
             <div className='plant-list'>
                 {plantList.map((plant) => (
                     <div key={ plant.id } className='plant-item'>
-                        <PlantItem name={ plant.name } cover={ plant.cover} light={ plant.light} water={ plant.water } />
+                        <PlantItem 
+                            name={ plant.name } 
+                            cover={ plant.cover} 
+                            light={ plant.light} 
+                            water={ plant.water } 
+                            bestSale={ plant.isBestSale } 
+                            specialOffer={plant.isSpecialOffer}
+                         />
                         {/*plant.isBestSale ? <span className='best-sale'> Top ventes</span> : null}
                         {plant.isSpecialOffer ? <span className='special-offer'> Soldes</span> : null*/}
                     </div>

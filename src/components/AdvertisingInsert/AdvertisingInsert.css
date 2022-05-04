@@ -1,0 +1,14 @@
+.advertising-insert {
+    padding: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.best-sale {
+    color: white;
+    background-color: red;
+}
+.special-offer {
+    background-color: yellow;
+}
