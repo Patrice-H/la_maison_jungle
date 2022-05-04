@@ -22,11 +22,10 @@ const ShoppingList = () => {
                             cover={ plant.cover} 
                             light={ plant.light} 
                             water={ plant.water } 
+                            price={ plant.price }
                             bestSale={ plant.isBestSale } 
-                            specialOffer={plant.isSpecialOffer}
+                            specialOffer={ plant.isSpecialOffer }
                          />
-                        {/*plant.isBestSale ? <span className='best-sale'> Top ventes</span> : null}
-                        {plant.isSpecialOffer ? <span className='special-offer'> Soldes</span> : null*/}
                     </div>
                 ))}
             </div>

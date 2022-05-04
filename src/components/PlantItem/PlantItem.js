@@ -18,6 +18,7 @@ const PlantItem = (props) => {
     const plantCover = props.cover;
     const plantLight = props.light;
     const plantWater = props.water;
+    const plantPrice = props.price;
     const plantBestSale = props.bestSale;
     const plantSpecialOffer = props.specialOffer;
     let plantImgSrc = '';
@@ -60,6 +61,7 @@ const PlantItem = (props) => {
             <div>{ plantName }</div>
             <CareScale careType='light' scaleValue={ plantLight } />
             <CareScale careType='water' scaleValue={ plantWater } />
+            <span className='plant-item-price'>{ plantPrice }€</span>
             {plantBestSale ? <AdvertisingInsert insertType='best-sale' /> : null}
             {plantSpecialOffer ? <AdvertisingInsert insertType='special-offer' /> : null}
         </>
