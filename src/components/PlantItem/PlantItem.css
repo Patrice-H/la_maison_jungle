@@ -21,3 +21,14 @@
     right: 0;
     font-weight: bold;
 }
+.plant-item-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.plant-item-btn:hover {
+    color: yellow;
+}

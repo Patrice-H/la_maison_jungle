@@ -10,6 +10,7 @@ import monsteraImg from '../../assets/monstera.jpg';
 import olivierImg from '../../assets/olivier.jpg';
 import pothosArgenteImg from '../../assets/pothos-argente.jpg';
 import succulenteImg from '../../assets/succulente.jpg';
+import buttonImg from '../../assets/button.png';
 import './PlantItem.css'
 import AdvertisingInsert from "../AdvertisingInsert/AdvertisingInsert";
 
@@ -64,6 +65,11 @@ const PlantItem = (props) => {
             <span className='plant-item-price'>{ plantPrice }€</span>
             {plantBestSale ? <AdvertisingInsert insertType='best-sale' /> : null}
             {plantSpecialOffer ? <AdvertisingInsert insertType='special-offer' /> : null}
+            <button className='plant-item-btn' style={{ 
+                backgroundImage: `url(${buttonImg})`,
+                backgroundSize: '100%',
+                }}
+            >Ajouter</button>
         </>
     );
 }
