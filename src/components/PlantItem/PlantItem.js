@@ -15,61 +15,83 @@ import './PlantItem.css'
 import AdvertisingInsert from "../AdvertisingInsert/AdvertisingInsert";
 
 const PlantItem = (props) => {
-    const plantName = props.name;
-    const plantCover = props.cover;
-    const plantLight = props.light;
-    const plantWater = props.water;
-    const plantPrice = props.price;
-    const plantBestSale = props.bestSale;
-    const plantSpecialOffer = props.specialOffer;
-    let plantImgSrc = '';
+    const name = props.name;
+    const cover = props.cover;
+    const light = props.light;
+    const water = props.water;
+    const price = props.price;
+    const bestSale = props.bestSale;
+    const specialOffer = props.specialOffer;
+    const cart = props.cart;
+    const updateCart = props.updateCart;
+    let imgSrc = '';
 
-    switch (plantCover) {
+    switch (cover) {
         case 'basilique.jpg':
-            plantImgSrc = basiliqueImg;
+            imgSrc = basiliqueImg;
             break;
         case 'cactus.jpg':
-            plantImgSrc = cactusImg;
+            imgSrc = cactusImg;
             break;
         case 'calathea.jpg':
-            plantImgSrc = calatheaImg;
+            imgSrc = calatheaImg;
             break;
         case 'ficus-lyrata.jpg':
-            plantImgSrc = ficusLyrataImg;
+            imgSrc = ficusLyrataImg;
             break;
         case 'menthe.jpg':
-            plantImgSrc = mentheImg;
+            imgSrc = mentheImg;
             break;
         case 'monstera.jpg':
-            plantImgSrc = monsteraImg;
+            imgSrc = monsteraImg;
             break;
         case 'olivier.jpg':
-            plantImgSrc = olivierImg;
+            imgSrc = olivierImg;
             break;
         case 'pothos-argente.jpg':
-            plantImgSrc = pothosArgenteImg;
+            imgSrc = pothosArgenteImg;
             break;
         case 'succulente.jpg':
-            plantImgSrc = succulenteImg;
+            imgSrc = succulenteImg;
             break;
         default:
             break;
     }
 
+    const addToCart = (name, price) => {
+        const currentPlantAdded = cart.find((plant) => plant.name === name);
+        if (currentPlantAdded) {
+            const cartFilteredCurrentPlant = cart.filter(
+                (plant) => plant.name !== name
+            );
+            updateCart([
+                ...cartFilteredCurrentPlant,
+                { name, price, amount: currentPlantAdded.amount + 1 }
+            ]);
+        } else {
+            updateCart([...cart, { name, price, amount: 1}]);
+        }
+    }
+
     return (
         <>
-            <img src={plantImgSrc} alt={ plantName } className='plant-item-img' />
-            <div>{ plantName }</div>
-            <CareScale careType='light' scaleValue={ plantLight } />
-            <CareScale careType='water' scaleValue={ plantWater } />
-            <span className='plant-item-price'>{ plantPrice }€</span>
-            {plantBestSale ? <AdvertisingInsert insertType='best-sale' /> : null}
-            {plantSpecialOffer ? <AdvertisingInsert insertType='special-offer' /> : null}
-            <button className='plant-item-btn' style={{ 
-                backgroundImage: `url(${buttonImg})`,
-                backgroundSize: '100%',
+            <img src={imgSrc} alt={ name } className='plant-item-img' />
+            <div>{ name }</div>
+            <CareScale careType='light' scaleValue={ light } />
+            <CareScale careType='water' scaleValue={ water } />
+            <span className='plant-item-price'>{ price }€</span>
+            {bestSale ? <AdvertisingInsert insertType='best-sale' /> : null}
+            {specialOffer ? <AdvertisingInsert insertType='special-offer' /> : null}
+            <button 
+                className='plant-item-btn' 
+                style={{ 
+                    backgroundImage: `url(${buttonImg})`,
+                    backgroundSize: '100%',
                 }}
-            >Ajouter</button>
+                onClick={() => addToCart( name, price)}
+            >
+                Ajouter
+            </button>
         </>
     );
 }

@@ -1,22 +1,29 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import './Cart.css';
 
-const Cart = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const monsteraPrice = 8;
-    const ivyPrice = 10;
-    const flowersPrice = 15;
+const Cart = (props) => {
+    const cart = props.cart;
+    const updateCart = props.updateCart;
+
+    const [isOpen, setIsOpen] = useState(true);
+    const total = cart.reduce(
+        (acc, plantType) => acc + plantType.amount * plantType.price,
+        0
+    );
+
     return (
         isOpen ? 
         <div className='cart'>
             <button onClick={() => setIsOpen(false)}>Fermer</button>
             <h2>Panier</h2>
-            <ul>
-                <li>Monstera : { monsteraPrice }€</li>
-                <li>Lierre : { ivyPrice }€</li>
-                <li>Bouquet de fleurs : { flowersPrice}€</li>
-            </ul>
-            <p>Total : { monsteraPrice + ivyPrice + flowersPrice }€</p>
+            {cart.map(({ name, price, amount }, index) => (
+                <div key={`${name}-${index}`}>
+                    {name} {price}€ X {amount}
+                </div>
+            ))}
+            <h3>Total : { total }€</h3>
+            <button onClick={() => updateCart([])}>Vider le panier</button>
         </div> : 
         <button onClick={() => setIsOpen(true)}>Ouvrir le panier</button>
     );

@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { plantList } from "../../datas/plantList";
 import PlantItem from "../PlantItem/PlantItem";
 import './ShoppingList.css';
 
-const ShoppingList = () => {
+const ShoppingList = (props) => {
     const plantCategories = Array.from(new Set(plantList.map(plant => plant.category)));
 
     return (
@@ -25,6 +26,8 @@ const ShoppingList = () => {
                             price={ plant.price }
                             bestSale={ plant.isBestSale } 
                             specialOffer={ plant.isSpecialOffer }
+                            cart={ props.cart } 
+                            updateCart={ props.updateCart }
                          />
                     </div>
                 ))}
