@@ -7,3 +7,6 @@
     justify-content: flex-start;
     width: 300px;
 }
+.cart button {
+    cursor: pointer;
+}
