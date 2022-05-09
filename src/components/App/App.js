@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from '../Banner/Banner';
 import Cart from "../Cart/Cart";
+import Footer from "../Footer/Footer";
 import ShoppingList from "../ShoppingList/ShoppingList";
 import './App.css';
 
@@ -12,7 +13,7 @@ const App = () => {
         <Cart />
         <ShoppingList />
       </div>
-      
+      <Footer />
     </>
   );
 }
