@@ -59,27 +59,29 @@ const PlantItem = (props) => {
     }
 
     const addToCart = (name, price) => {
-        const currentPlantAdded = cart.find((plant) => plant.name === name);
-        if (currentPlantAdded) {
-            const cartFilteredCurrentPlant = cart.filter(
-                (plant) => plant.name !== name
-            );
-            updateCart([
-                ...cartFilteredCurrentPlant,
-                { name, price, amount: currentPlantAdded.amount + 1 }
-            ]);
-        } else {
-            updateCart([...cart, { name, price, amount: 1}]);
+        if (confirm(`Voulez vous ajouter 1 ${name} au panier ?`)) {
+            const currentPlantAdded = cart.find((plant) => plant.name === name);
+            if (currentPlantAdded) {
+                const cartFilteredCurrentPlant = cart.filter(
+                    (plant) => plant.name !== name
+                );
+                updateCart([
+                    ...cartFilteredCurrentPlant,
+                    {name, price, amount: currentPlantAdded.amount + 1}
+                ]);
+            } else {
+                updateCart([...cart, {name, price, amount: 1}]);
+            }
         }
     }
 
     return (
         <>
-            <img src={imgSrc} alt={ name } className='plant-item-img' />
-            <div>{ name }</div>
-            <CareScale careType='light' scaleValue={ light } />
-            <CareScale careType='water' scaleValue={ water } />
-            <span className='plant-item-price'>{ price }€</span>
+            <img src={imgSrc} alt={name} className='plant-item-img' />
+            <div>{name}</div>
+            <CareScale careType='light' scaleValue={light} />
+            <CareScale careType='water' scaleValue={water} />
+            <span className='plant-item-price'>{price}€</span>
             {bestSale ? <AdvertisingInsert insertType='best-sale' /> : null}
             {specialOffer ? <AdvertisingInsert insertType='special-offer' /> : null}
             <button 
@@ -88,7 +90,7 @@ const PlantItem = (props) => {
                     backgroundImage: `url(${buttonImg})`,
                     backgroundSize: '100%',
                 }}
-                onClick={() => addToCart( name, price)}
+                onClick={() => addToCart(name, price)}
             >
                 Ajouter
             </button>
